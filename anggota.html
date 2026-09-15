@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anggota • 7A SPENSAMO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="brand">
+    <span class="brand-main">7A</span>
+    <span class="brand-sub">SPENSAMO</span>
+  </a>
+
+  <button class="menu-button" id="menuButton" type="button">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<aside class="side-menu" id="sideMenu">
+
+  <div class="side-menu-header">
+    <div>
+      <span class="menu-title">7A</span>
+      <span class="menu-subtitle">SPENSAMO</span>
+    </div>
+
+    <button class="close-menu" id="closeMenu" type="button">×</button>
+  </div>
+
+  <nav class="menu-nav">
+    <a href="index.html" class="menu-link">Beranda</a>
+    <a href="anggota.html" class="menu-link active">Anggota</a>
+    <a href="jadwal.html" class="menu-link">Jadwal</a>
+    <a href="prestasi.html" class="menu-link">Prestasi</a>
+    <a href="pengumuman.html" class="menu-link">Pengumuman</a>
+  </nav>
+
+  <div class="menu-bottom">
+    <a href="admin.html" class="admin-link">Admin</a>
+  </div>
+
+</aside>
+
+
+<main class="page-main">
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <span class="page-label">CLASS 7A</span>
+
+      <h1>Anggota <span>7A</span></h1>
+
+      <p>
+        Daftar anggota kelas 7A SPENSAMO.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="members-section">
+
+    <div class="section-heading">
+      <span class="section-label">OUR MEMBERS</span>
+
+      <h2>Daftar Anggota</h2>
+
+      <p>
+        Cari nama siswa menggunakan kolom pencarian.
+      </p>
+    </div>
+
+
+    <div class="member-search">
+
+      <div class="search-box">
+
+        <span class="search-icon">⌕</span>
+
+        <input
+          type="search"
+          id="studentSearch"
+          placeholder="Cari nama siswa..."
+          autocomplete="off"
+        >
+
+        <button
+          type="button"
+          id="clearSearch"
+          class="clear-search"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <div
+        class="search-result"
+        id="searchResult"
+      >
+        Menampilkan 32 anggota
+      </div>
+
+    </div>
+
+
+    <div
+      class="members-grid"
+      id="membersGrid"
+    ></div>
+
+
+    <div
+      class="no-result"
+      id="noResult"
+      hidden
+    >
+
+      <div class="no-result-icon">
+        404
+      </div>
+
+      <h3>Siswa tidak ditemukan</h3>
+
+      <p>Coba gunakan nama lain.</p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="footer-brand">
+    <strong>7A SPENSAMO</strong>
+    <span>SMP Negeri 1 Mojolaban</span>
+  </div>
+
+  <p>© 2026 Class 7A • 2026/2027</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const names = [
+    "Iqbal",
+    "Almeira",
+    "Arjuna",
+    "Aura",
+    "Azahra",
+    "Venzia",
+    "Bintang",
+    "Inez",
+    "Clarissa",
+    "Verrel",
+    "Ulin",
+    "Firas",
+    "Hamid",
+    "Indi",
+    "Jendral",
+    "Jessy",
+    "Juju",
+    "Theo",
+    "Toni",
+    "Rayhan",
+    "Nadya",
+    "Oliv",
+    "Agil",
+    "Rafa .A",
+    "Rafa .M",
+    "Reva",
+    "Roby",
+    "Septi",
+    "Silvi",
+    "Sischa",
+    "Vicha",
+    "Nabila"
+  ];
+
+
+  const grid = document.getElementById("membersGrid");
+  const search = document.getElementById("studentSearch");
+  const clear = document.getElementById("clearSearch");
+  const result = document.getElementById("searchResult");
+  const noResult = document.getElementById("noResult");
+
+
+  function showMembers(keyword = "") {
+
+    grid.innerHTML = "";
+
+    const text = keyword.toLowerCase().trim();
+
+    const filtered = names.filter(name =>
+      name.toLowerCase().includes(text)
+    );
+
+
+    filtered.forEach((name) => {
+
+      const number = names.indexOf(name) + 1;
+
+      const card = document.createElement("article");
+
+      card.className = "member-card";
+
+      card.innerHTML = `
+        <div class="member-photo">
+          <div class="photo-placeholder">
+            <span>${String(number).padStart(2, "0")}</span>
+          </div>
+        </div>
+
+        <div class="member-info">
+          <span class="member-number">
+            ${String(number).padStart(2, "0")}
+          </span>
+
+          <h3>${name}</h3>
+        </div>
+      `;
+
+      grid.appendChild(card);
+
+    });
+
+
+    result.textContent =
+      `Menampilkan ${filtered.length} anggota`;
+
+    noResult.hidden = filtered.length !== 0;
+
+    clear.classList.toggle(
+      "show",
+      text.length > 0
+    );
+
+  }
+
+
+  search.addEventListener("input", () => {
+    showMembers(search.value);
+  });
+
+
+  clear.addEventListener("click", () => {
+
+    search.value = "";
+
+    showMembers();
+
+    search.focus();
+
+  });
+
+
+  showMembers();
+
+});
+</script>
+
+</body>
+</html>

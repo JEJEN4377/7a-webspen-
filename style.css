@@ -1,0 +1,1490 @@
+/* ========================================
+   7A SPENSAMO
+   STYLE.CSS — BAGIAN 1/3
+======================================== */
+
+
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(30, 105, 190, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(20, 75, 150, 0.14),
+      transparent 38%
+    ),
+    #050912;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: rgba(5, 10, 20, 0.72);
+
+  border-bottom:
+    1px solid rgba(120, 180, 255, 0.10);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  z-index: 1000;
+}
+
+
+/* BRAND */
+
+.brand {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  text-decoration: none;
+}
+
+.brand-main {
+  font-size: 18px;
+  font-weight: 800;
+
+  color: #ffffff;
+
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  font-size: 11px;
+  font-weight: 700;
+
+  color: #63aaff;
+
+  letter-spacing: 2px;
+
+  padding-left: 9px;
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/* ========================================
+   HAMBURGER
+======================================== */
+
+.menu-button {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border:
+    1px solid rgba(110, 170, 255, 0.18);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.menu-button:hover {
+  background:
+    rgba(65, 145, 255, 0.10);
+
+  border-color:
+    rgba(100, 170, 255, 0.35);
+}
+
+.menu-button:active {
+  transform: scale(0.94);
+}
+
+.menu-button span {
+  width: 20px;
+  height: 2px;
+
+  display: block;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+}
+
+
+/* ========================================
+   SIDE MENU
+======================================== */
+
+.side-menu {
+  position: fixed;
+
+  top: 0;
+  right: -330px;
+
+  width: 310px;
+  max-width: 88vw;
+  height: 100vh;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 24, 43, 0.98),
+      rgba(5, 12, 23, 0.98)
+    );
+
+  border-left:
+    1px solid rgba(90, 160, 255, 0.20);
+
+  box-shadow:
+    -20px 0 60px rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  z-index: 1200;
+
+  transition:
+    right 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+
+/* SIDE MENU HEADER */
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 25px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.menu-title {
+  display: block;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.menu-subtitle {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #63aaff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.close-menu {
+  width: 40px;
+  height: 40px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.10);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: #ffffff;
+
+  font-size: 26px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.close-menu:hover {
+  background:
+    rgba(80, 150, 255, 0.12);
+}
+
+
+/* ========================================
+   MENU NAVIGATION
+======================================== */
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin-top: 28px;
+}
+
+.menu-link {
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+
+  border: 1px solid transparent;
+  border-radius: 13px;
+
+  color:
+    rgba(255, 255, 255, 0.70);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.25s ease;
+}
+
+.menu-link:hover {
+  color: #ffffff;
+
+  background:
+    rgba(80, 150, 255, 0.07);
+
+  border-color:
+    rgba(80, 150, 255, 0.12);
+}
+
+.menu-link.active {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(45, 125, 235, 0.20),
+      rgba(45, 125, 235, 0.05)
+    );
+
+  border-color:
+    rgba(80, 155, 255, 0.25);
+
+  box-shadow:
+    inset 3px 0 0 #4b9cff;
+}
+
+
+/* ========================================
+   MENU BOTTOM
+======================================== */
+
+.menu-bottom {
+  margin-top: auto;
+
+  padding-top: 20px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-link {
+  display: block;
+
+  padding: 14px 16px;
+
+  border-radius: 12px;
+
+  color: #74b5ff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: center;
+
+  background:
+    rgba(70, 145, 255, 0.07);
+
+  border:
+    1px solid rgba(70, 145, 255, 0.14);
+
+  transition: 0.25s ease;
+}
+
+.admin-link:hover {
+  background:
+    rgba(70, 145, 255, 0.14);
+}
+
+
+/* ========================================
+   MENU OVERLAY
+======================================== */
+
+.menu-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(0, 0, 0, 0.55);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  z-index: 1100;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  position: relative;
+
+  min-height: 620px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    120px 6% 80px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(35, 105, 190, 0.22),
+      transparent 42%
+    );
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(40, 120, 220, 0.07);
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+
+  width: 100%;
+  max-width: 900px;
+
+  text-align: center;
+
+  animation:
+    fadeUp 0.8s ease both;
+}
+
+.hero-label {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  padding: 8px 14px;
+
+  border:
+    1px solid rgba(95, 165, 255, 0.20);
+
+  border-radius: 999px;
+
+  color: #73b5ff;
+
+  background:
+    rgba(60, 140, 255, 0.06);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 2.5px;
+}
+
+.hero h1 {
+  font-size: clamp(56px, 12vw, 105px);
+
+  line-height: 0.95;
+
+  font-weight: 900;
+
+  letter-spacing: -4px;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 10px 50px rgba(0, 0, 0, 0.45);
+}
+
+.hero h1 span {
+  display: inline-block;
+
+  color: #63aaff;
+
+  text-shadow:
+    0 0 35px rgba(70, 155, 255, 0.35);
+}
+
+.hero-year {
+  margin-top: 22px;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  font-size: 15px;
+  font-weight: 500;
+
+  letter-spacing: 1px;
+}
+
+.hero-slogan {
+  margin-top: 15px;
+
+  color:
+    rgba(255, 255, 255, 0.40);
+
+  font-size: 12px;
+
+  letter-spacing: 1.8px;
+}
+
+
+/* ========================================
+   CLASS CENTER
+======================================== */
+
+.class-center {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding:
+    30px 6% 100px;
+}
+
+.section-heading {
+  margin-bottom: 35px;
+
+  animation:
+    fadeUp 0.8s ease both;
+}
+
+.section-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #63aaff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.section-heading h2 {
+  font-size: clamp(27px, 5vw, 38px);
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.section-heading p {
+  margin-top: 9px;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+
+  font-size: 13px;
+}
+
+
+/* ========================================
+   2 x 2 CARD GRID
+======================================== */
+
+.center-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+
+/* ========================================
+   CENTER CARD
+======================================== */
+
+.center-card {
+  position: relative;
+
+  min-height: 190px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 25px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(90, 165, 255, 0.16);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(24, 45, 72, 0.72),
+      rgba(8, 18, 32, 0.82)
+    );
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  animation:
+    fadeUp 0.7s ease both;
+
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+.center-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  right: -55px;
+  top: -65px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(70, 150, 255, 0.08);
+
+  filter: blur(15px);
+
+  transition:
+    transform 0.35s ease;
+}
+
+.center-card:hover {
+  transform:
+    translateY(-6px);
+
+  border-color:
+    rgba(90, 170, 255, 0.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(28, 57, 90, 0.78),
+      rgba(8, 20, 36, 0.88)
+    );
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.32),
+    0 0 35px rgba(50, 135, 240, 0.07);
+}
+
+.center-card:hover::before {
+  transform: scale(1.35);
+}
+
+.center-card.pressed {
+  transform: scale(0.98);
+}
+
+
+/* ========================================
+   CARD ICON
+======================================== */
+
+.card-icon {
+  flex: 0 0 auto;
+
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 18px;
+
+  border:
+    1px solid rgba(95, 170, 255, 0.20);
+
+  border-radius: 18px;
+
+  background:
+    rgba(65, 145, 255, 0.08);
+
+  font-size: 28px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.card-text {
+  position: relative;
+
+  z-index: 2;
+
+  min-width: 0;
+}
+
+.card-text h3 {
+  font-size: 20px;
+
+  font-weight: 800;
+
+  margin-bottom: 7px;
+}
+
+.card-text p {
+  color:
+    rgba(255, 255, 255, 0.45);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.card-arrow {
+  position: absolute;
+
+  right: 22px;
+  bottom: 20px;
+
+  color:
+    rgba(105, 175, 255, 0.75);
+
+  font-size: 22px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.center-card:hover .card-arrow {
+  transform:
+    translateX(5px);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+  width: 100%;
+
+  padding:
+    35px 6%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  background:
+    rgba(3, 8, 15, 0.65);
+
+  animation:
+    fadeUp 0.8s ease both;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.footer-brand strong {
+  font-size: 13px;
+
+  letter-spacing: 1px;
+}
+
+.footer-brand span {
+  color:
+    rgba(255, 255, 255, 0.38);
+
+  font-size: 11px;
+}
+
+.footer p {
+  color:
+    rgba(255, 255, 255, 0.30);
+
+  font-size: 10px;
+}
+
+
+/* ========================================
+   ANIMATION
+======================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* ========================================
+   ANGGOTA — MEMBER PAGE
+======================================== */
+
+.page-main {
+  min-height: 100vh;
+
+  padding-top: 110px;
+}
+
+
+/* PAGE HERO */
+
+.page-hero {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding:
+    40px 6% 35px;
+}
+
+.page-hero .section-label {
+  margin-bottom: 12px;
+}
+
+.page-hero h1 {
+  font-size: clamp(34px, 7vw, 55px);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -2px;
+}
+
+.page-hero h1 span {
+  color: #63aaff;
+}
+
+.page-hero p {
+  margin-top: 12px;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+
+  font-size: 13px;
+}
+
+
+/* ========================================
+   SEARCH
+======================================== */
+
+.search-area {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding:
+    0 6% 35px;
+}
+
+.search-box {
+  position: relative;
+
+  width: 100%;
+}
+
+.search-box input {
+  width: 100%;
+  height: 54px;
+
+  padding:
+    0 52px 0 18px;
+
+  outline: none;
+
+  border:
+    1px solid rgba(95, 170, 255, 0.16);
+
+  border-radius: 15px;
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.search-box input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.30);
+}
+
+.search-box input:focus {
+  border-color:
+    rgba(90, 165, 255, 0.42);
+
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+.clear-search {
+  position: absolute;
+
+  top: 50%;
+  right: 14px;
+
+  width: 32px;
+  height: 32px;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  border-radius: 9px;
+
+  color:
+    rgba(255, 255, 255, 0.60);
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition: 0.2s ease;
+}
+
+.clear-search.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.clear-search:hover {
+  color: #ffffff;
+
+  background:
+    rgba(90, 160, 255, 0.12);
+}
+
+.search-result {
+  margin-top: 10px;
+
+  color:
+    rgba(255, 255, 255, 0.35);
+
+  font-size: 11px;
+}
+
+
+/* ========================================
+   MEMBERS GRID
+======================================== */
+
+.members-section {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding:
+    0 6% 100px;
+}
+
+.members-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 15px;
+}
+
+
+/* ========================================
+   MEMBER CARD
+======================================== */
+
+.member-card {
+  position: relative;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(90, 165, 255, 0.14);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 40, 64, 0.72),
+      rgba(7, 16, 29, 0.82)
+    );
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  animation:
+    fadeUp 0.55s ease both;
+}
+
+.member-card:hover {
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(90, 170, 255, 0.34);
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.30),
+    0 0 25px rgba(60, 145, 255, 0.06);
+}
+
+
+/* ========================================
+   MEMBER PHOTO
+======================================== */
+
+.member-photo {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  padding: 10px;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px dashed rgba(100, 170, 255, 0.20);
+
+  border-radius: 13px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(70, 145, 235, 0.09),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  color:
+    rgba(120, 185, 255, 0.55);
+}
+
+.photo-placeholder span {
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+/* ========================================
+   MEMBER INFO
+======================================== */
+
+.member-info {
+  position: relative;
+
+  padding:
+    0 15px 17px;
+}
+
+.member-number {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    rgba(95, 170, 255, 0.55);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.member-info h3 {
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ========================================
+   NO RESULT
+======================================== */
+
+.no-result {
+  display: none;
+
+  padding:
+    50px 20px;
+
+  text-align: center;
+
+  color:
+    rgba(255, 255, 255, 0.35);
+
+  font-size: 13px;
+}
+
+.no-result.show {
+  display: block;
+}
+
+
+/* ========================================
+   RESPONSIVE — TABLET
+======================================== */
+
+@media (max-width: 850px) {
+
+  .hero {
+    min-height: 560px;
+
+    padding:
+      110px 6% 60px;
+  }
+
+  .class-center {
+    padding-bottom: 75px;
+  }
+
+  .members-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ========================================
+   RESPONSIVE — HP
+======================================== */
+
+@media (max-width: 600px) {
+
+  .navbar {
+    height: 64px;
+
+    padding:
+      0 5%;
+  }
+
+  .menu-button {
+    width: 43px;
+    height: 43px;
+  }
+
+
+  /* HERO */
+
+  .hero {
+    min-height: 500px;
+
+    padding:
+      105px 5% 55px;
+  }
+
+  .hero-label {
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    padding:
+      7px 11px;
+  }
+
+  .hero h1 {
+    font-size: 62px;
+
+    letter-spacing: -3px;
+  }
+
+  .hero-year {
+    font-size: 13px;
+  }
+
+  .hero-slogan {
+    font-size: 10px;
+
+    letter-spacing: 1.2px;
+  }
+
+
+  /* CLASS CENTER */
+
+  .class-center {
+    padding:
+      25px 5% 65px;
+  }
+
+  .section-heading {
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    font-size: 27px;
+  }
+
+  .section-heading p {
+    font-size: 12px;
+  }
+
+
+  /* 2 x 2 */
+
+  .center-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+  }
+
+  .center-card {
+    min-height: 165px;
+
+    display: block;
+
+    padding: 17px;
+
+    border-radius: 17px;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+
+    margin:
+      0 0 15px;
+
+    border-radius: 14px;
+
+    font-size: 22px;
+  }
+
+  .card-text h3 {
+    font-size: 15px;
+
+    margin-bottom: 5px;
+  }
+
+  .card-text p {
+    font-size: 10px;
+
+    line-height: 1.4;
+  }
+
+  .card-arrow {
+    right: 14px;
+    bottom: 12px;
+
+    font-size: 17px;
+  }
+
+
+  /* FOOTER */
+
+  .footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding:
+      28px 5%;
+  }
+
+
+  /* SIDE MENU */
+
+  .side-menu {
+    width: 285px;
+  }
+
+
+  /* MEMBER PAGE */
+
+  .page-main {
+    padding-top: 90px;
+  }
+
+  .page-hero {
+    padding:
+      30px 5% 25px;
+  }
+
+  .page-hero h1 {
+    font-size: 38px;
+  }
+
+  .search-area {
+    padding:
+      0 5% 25px;
+  }
+
+  .members-section {
+    padding:
+      0 5% 70px;
+  }
+
+  .members-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+  }
+
+  .member-card {
+    border-radius: 15px;
+  }
+
+  .member-photo {
+    padding: 8px;
+  }
+
+  .member-info {
+    padding:
+      0 11px 13px;
+  }
+
+  .member-info h3 {
+    font-size: 12px;
+  }
+
+}
+
+
+/* ========================================
+   RESPONSIVE — HP KECIL
+======================================== */
+
+@media (max-width: 380px) {
+
+  .hero h1 {
+    font-size: 54px;
+  }
+
+  .center-card {
+    min-height: 150px;
+
+    padding: 14px;
+  }
+
+  .card-icon {
+    width: 43px;
+    height: 43px;
+
+    font-size: 19px;
+  }
+
+  .card-text h3 {
+    font-size: 13px;
+  }
+
+  .card-text p {
+    font-size: 9px;
+  }
+
+  .members-grid {
+    gap: 8px;
+  }
+
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+}

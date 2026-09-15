@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pengumuman • 7A SPENSAMO</title>
+
+  <meta
+    name="description"
+    content="Pengumuman Kelas 7A SMP Negeri 1 Mojolaban Tahun Ajaran 2026/2027"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ========================================
+       PENGUMUMAN PAGE
+    ======================================== */
+
+    .announcement-main {
+      min-height: 100vh;
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+
+    .announcement-header {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 35px 6% 30px;
+    }
+
+    .announcement-header h1 {
+      font-size: clamp(38px, 7vw, 58px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .announcement-header h1 span {
+      color: #63aaff;
+    }
+
+    .announcement-header p {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+
+    /* ========================================
+       CONTAINER
+    ======================================== */
+
+    .announcement-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 6%;
+    }
+
+    .announcement-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+
+    /* ========================================
+       EMPTY STATE
+    ======================================== */
+
+    .announcement-empty {
+      padding: 65px 25px;
+
+      text-align: center;
+
+      border:
+        1px solid rgba(90, 165, 255, 0.15);
+
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 43, 68, 0.72),
+          rgba(7, 17, 30, 0.84)
+        );
+
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      animation:
+        fadeUp 0.6s ease both;
+    }
+
+    .announcement-empty-icon {
+      width: 70px;
+      height: 70px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 20px;
+
+      border:
+        1px solid rgba(95, 170, 255, 0.20);
+
+      border-radius: 20px;
+
+      background:
+        rgba(65, 145, 255, 0.08);
+
+      font-size: 30px;
+    }
+
+    .announcement-empty h2 {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .announcement-empty p {
+      max-width: 480px;
+
+      margin: 10px auto 0;
+
+      color:
+        rgba(255, 255, 255, 0.40);
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+
+    /* ========================================
+       ANNOUNCEMENT CARD
+    ======================================== */
+
+    .announcement-card {
+      position: relative;
+
+      padding: 21px;
+
+      border:
+        1px solid rgba(90, 165, 255, 0.15);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 43, 68, 0.74),
+          rgba(7, 17, 30, 0.84)
+        );
+
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      animation:
+        fadeUp 0.55s ease both;
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .announcement-card:hover {
+      transform: translateY(-3px);
+
+      border-color:
+        rgba(90, 170, 255, 0.32);
+
+      box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.28);
+    }
+
+
+    /* ========================================
+       CARD TOP
+    ======================================== */
+
+    .announcement-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .announcement-icon {
+      width: 52px;
+      height: 52px;
+
+      flex: 0 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border:
+        1px solid rgba(95, 170, 255, 0.20);
+
+      border-radius: 15px;
+
+      background:
+        rgba(65, 145, 255, 0.08);
+
+      font-size: 23px;
+    }
+
+    .announcement-content {
+      min-width: 0;
+    }
+
+    .announcement-content h2 {
+      font-size: 17px;
+      font-weight: 800;
+
+      line-height: 1.3;
+    }
+
+    .announcement-date {
+      display: block;
+
+      margin-top: 6px;
+
+      color:
+        rgba(100, 175, 255, 0.55);
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1.4px;
+    }
+
+    .announcement-text {
+      margin-top: 16px;
+
+      color:
+        rgba(255, 255, 255, 0.50);
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 600px) {
+
+      .announcement-main {
+        padding-top: 82px;
+        padding-bottom: 60px;
+      }
+
+      .announcement-header {
+        padding:
+          30px 5% 25px;
+      }
+
+      .announcement-header h1 {
+        font-size: 39px;
+      }
+
+      .announcement-header p {
+        font-size: 12px;
+      }
+
+      .announcement-container {
+        padding: 0 5%;
+      }
+
+      .announcement-list {
+        gap: 12px;
+      }
+
+      .announcement-empty {
+        padding: 50px 18px;
+        border-radius: 18px;
+      }
+
+      .announcement-empty-icon {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 17px;
+
+        font-size: 26px;
+      }
+
+      .announcement-empty h2 {
+        font-size: 18px;
+      }
+
+      .announcement-empty p {
+        font-size: 11px;
+      }
+
+      .announcement-card {
+        padding: 17px;
+        border-radius: 17px;
+      }
+
+      .announcement-icon {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 13px;
+
+        font-size: 20px;
+      }
+
+      .announcement-content h2 {
+        font-size: 15px;
+      }
+
+      .announcement-text {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================
+       NAVBAR
+  ======================================== -->
+
+  <header class="navbar">
+
+    <a href="index.html" class="brand">
+      <span class="brand-main">7A</span>
+      <span class="brand-sub">SPENSAMO</span>
+    </a>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="Buka menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </header>
+
+
+  <!-- OVERLAY -->
+
+  <div
+    class="menu-overlay"
+    id="menuOverlay"
+  ></div>
+
+
+  <!-- ========================================
+       SIDE MENU
+  ======================================== -->
+
+  <aside
+    class="side-menu"
+    id="sideMenu"
+  >
+
+    <div class="side-menu-header">
+
+      <div>
+        <span class="menu-title">7A</span>
+        <span class="menu-subtitle">SPENSAMO</span>
+      </div>
+
+      <button
+        class="close-menu"
+        id="closeMenu"
+        type="button"
+        aria-label="Tutup menu"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <nav class="menu-nav">
+
+      <a href="index.html" class="menu-link">
+        Beranda
+      </a>
+
+      <a href="anggota.html" class="menu-link">
+        Anggota
+      </a>
+
+      <a href="jadwal.html" class="menu-link">
+        Jadwal
+      </a>
+
+      <a href="prestasi.html" class="menu-link">
+        Prestasi
+      </a>
+
+      <a
+        href="pengumuman.html"
+        class="menu-link active"
+      >
+        Pengumuman
+      </a>
+
+    </nav>
+
+
+    <div class="menu-bottom">
+
+      <a
+        href="admin.html"
+        class="admin-link"
+      >
+        Admin
+      </a>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ========================================
+       MAIN
+  ======================================== -->
+
+  <main class="announcement-main">
+
+
+    <!-- HEADER -->
+
+    <section class="announcement-header">
+
+      <span class="section-label">
+        CLASS ANNOUNCEMENT
+      </span>
+
+      <h1>
+        Pengumuman <span>7A</span>
+      </h1>
+
+      <p>
+        Informasi terbaru untuk seluruh anggota<br>
+        Kelas 7A Tahun Ajaran 2026/2027
+      </p>
+
+    </section>
+
+
+    <!-- ========================================
+         ANNOUNCEMENT LIST
+    ======================================== -->
+
+    <section class="announcement-container">
+
+      <div
+        class="announcement-list"
+        id="announcementList"
+      >
+
+        <!--
+          Belum ada pengumuman.
+          Data nantinya bisa ditambahkan
+          melalui halaman Admin.
+        -->
+
+        <div class="announcement-empty">
+
+          <div class="announcement-empty-icon">
+            📢
+          </div>
+
+          <h2>
+            Belum Ada Pengumuman
+          </h2>
+
+          <p>
+            Belum ada informasi yang ditambahkan
+            untuk kelas 7A. Pengumuman yang dibuat
+            oleh admin nantinya akan muncul di sini.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+
+  <footer class="footer">
+
+    <div class="footer-brand">
+
+      <strong>7A SPENSAMO</strong>
+
+      <span>
+        SMP Negeri 1 Mojolaban
+      </span>
+
+    </div>
+
+    <p>
+      © 2026 Class 7A • 2026/2027
+    </p>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

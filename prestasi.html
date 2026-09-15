@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prestasi • 7A SPENSAMO</title>
+
+  <meta
+    name="description"
+    content="Prestasi Kelas 7A SMP Negeri 1 Mojolaban Tahun Ajaran 2026/2027"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ========================================
+       PRESTASI PAGE
+    ======================================== */
+
+    .achievement-main {
+      min-height: 100vh;
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+
+    .achievement-header {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 35px 6% 30px;
+    }
+
+    .achievement-header h1 {
+      font-size: clamp(38px, 7vw, 58px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .achievement-header h1 span {
+      color: #63aaff;
+    }
+
+    .achievement-header p {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+
+    /* ========================================
+       ACHIEVEMENT CONTAINER
+    ======================================== */
+
+    .achievement-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 6%;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+
+    /* ========================================
+       EMPTY STATE
+    ======================================== */
+
+    .achievement-empty {
+      grid-column: 1 / -1;
+
+      padding: 65px 25px;
+
+      text-align: center;
+
+      border:
+        1px solid rgba(90, 165, 255, 0.15);
+
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 43, 68, 0.72),
+          rgba(7, 17, 30, 0.84)
+        );
+
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      animation:
+        fadeUp 0.6s ease both;
+    }
+
+    .achievement-empty-icon {
+      width: 70px;
+      height: 70px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 20px;
+
+      border:
+        1px solid rgba(95, 170, 255, 0.20);
+
+      border-radius: 20px;
+
+      background:
+        rgba(65, 145, 255, 0.08);
+
+      font-size: 30px;
+    }
+
+    .achievement-empty h2 {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .achievement-empty p {
+      max-width: 480px;
+
+      margin: 10px auto 0;
+
+      color:
+        rgba(255, 255, 255, 0.40);
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+
+    /* ========================================
+       ACHIEVEMENT CARD
+       Dipakai nanti oleh sistem admin
+    ======================================== */
+
+    .achievement-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 22px;
+
+      border:
+        1px solid rgba(90, 165, 255, 0.15);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 43, 68, 0.74),
+          rgba(7, 17, 30, 0.84)
+        );
+
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      animation:
+        fadeUp 0.55s ease both;
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-4px);
+
+      border-color:
+        rgba(90, 170, 255, 0.32);
+
+      box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.28),
+        0 0 30px rgba(60, 145, 255, 0.05);
+    }
+
+    .achievement-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      margin-bottom: 16px;
+    }
+
+    .achievement-icon {
+      width: 52px;
+      height: 52px;
+
+      flex: 0 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border:
+        1px solid rgba(95, 170, 255, 0.20);
+
+      border-radius: 15px;
+
+      background:
+        rgba(65, 145, 255, 0.08);
+
+      font-size: 23px;
+    }
+
+    .achievement-title {
+      min-width: 0;
+    }
+
+    .achievement-title h2 {
+      font-size: 17px;
+      font-weight: 800;
+
+      line-height: 1.25;
+    }
+
+    .achievement-year {
+      display: block;
+
+      margin-top: 5px;
+
+      color:
+        rgba(100, 175, 255, 0.55);
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+    }
+
+    .achievement-description {
+      color:
+        rgba(255, 255, 255, 0.48);
+
+      font-size: 12px;
+
+      line-height: 1.6;
+    }
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 600px) {
+
+      .achievement-main {
+        padding-top: 82px;
+        padding-bottom: 60px;
+      }
+
+      .achievement-header {
+        padding:
+          30px 5% 25px;
+      }
+
+      .achievement-header h1 {
+        font-size: 39px;
+      }
+
+      .achievement-header p {
+        font-size: 12px;
+      }
+
+      .achievement-container {
+        padding: 0 5%;
+      }
+
+      .achievement-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .achievement-empty {
+        padding: 50px 18px;
+        border-radius: 18px;
+      }
+
+      .achievement-empty-icon {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 17px;
+
+        font-size: 26px;
+      }
+
+      .achievement-empty h2 {
+        font-size: 18px;
+      }
+
+      .achievement-empty p {
+        font-size: 11px;
+      }
+
+      .achievement-card {
+        padding: 17px;
+        border-radius: 17px;
+      }
+
+      .achievement-icon {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 13px;
+
+        font-size: 20px;
+      }
+
+      .achievement-title h2 {
+        font-size: 15px;
+      }
+
+      .achievement-description {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================
+       NAVBAR
+  ======================================== -->
+
+  <header class="navbar">
+
+    <a href="index.html" class="brand">
+      <span class="brand-main">7A</span>
+      <span class="brand-sub">SPENSAMO</span>
+    </a>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="Buka menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </header>
+
+
+  <!-- OVERLAY -->
+
+  <div
+    class="menu-overlay"
+    id="menuOverlay"
+  ></div>
+
+
+  <!-- ========================================
+       SIDE MENU
+  ======================================== -->
+
+  <aside
+    class="side-menu"
+    id="sideMenu"
+  >
+
+    <div class="side-menu-header">
+
+      <div>
+        <span class="menu-title">7A</span>
+        <span class="menu-subtitle">SPENSAMO</span>
+      </div>
+
+      <button
+        class="close-menu"
+        id="closeMenu"
+        type="button"
+        aria-label="Tutup menu"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <nav class="menu-nav">
+
+      <a
+        href="index.html"
+        class="menu-link"
+      >
+        Beranda
+      </a>
+
+      <a
+        href="anggota.html"
+        class="menu-link"
+      >
+        Anggota
+      </a>
+
+      <a
+        href="jadwal.html"
+        class="menu-link"
+      >
+        Jadwal
+      </a>
+
+      <a
+        href="prestasi.html"
+        class="menu-link active"
+      >
+        Prestasi
+      </a>
+
+      <a
+        href="pengumuman.html"
+        class="menu-link"
+      >
+        Pengumuman
+      </a>
+
+    </nav>
+
+
+    <div class="menu-bottom">
+
+      <a
+        href="admin.html"
+        class="admin-link"
+      >
+        Admin
+      </a>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ========================================
+       MAIN
+  ======================================== -->
+
+  <main class="achievement-main">
+
+
+    <!-- HEADER -->
+
+    <section class="achievement-header">
+
+      <span class="section-label">
+        CLASS ACHIEVEMENT
+      </span>
+
+      <h1>
+        Prestasi <span>7A</span>
+      </h1>
+
+      <p>
+        Kumpulan prestasi dan pencapaian<br>
+        Kelas 7A Tahun Ajaran 2026/2027
+      </p>
+
+    </section>
+
+
+    <!-- ========================================
+         ACHIEVEMENTS
+    ======================================== -->
+
+    <section class="achievement-container">
+
+      <div
+        class="achievement-grid"
+        id="achievementGrid"
+      >
+
+        <!--
+          Belum ada data prestasi.
+          Data nantinya bisa ditambahkan
+          melalui halaman Admin.
+        -->
+
+        <div class="achievement-empty">
+
+          <div class="achievement-empty-icon">
+            🏆
+          </div>
+
+          <h2>
+            Belum Ada Prestasi
+          </h2>
+
+          <p>
+            Belum ada data prestasi yang ditambahkan
+            untuk kelas 7A. Prestasi yang sudah
+            dicatat nantinya akan muncul di halaman ini.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+
+  <footer class="footer">
+
+    <div class="footer-brand">
+
+      <strong>7A SPENSAMO</strong>
+
+      <span>
+        SMP Negeri 1 Mojolaban
+      </span>
+
+    </div>
+
+    <p>
+      © 2026 Class 7A • 2026/2027
+    </p>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin • 7A SPENSAMO</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* ================================
+       ADMIN
+    ================================ */
+
+    .admin-main {
+      min-height: 100vh;
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+
+    .admin-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 6%;
+      box-sizing: border-box;
+    }
+
+    .admin-header {
+      margin-bottom: 30px;
+    }
+
+    .admin-header h1 {
+      margin-top: 8px;
+      font-size: clamp(38px, 7vw, 55px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .admin-header h1 span {
+      color: #63aaff;
+    }
+
+    .admin-header p {
+      margin-top: 12px;
+      color: rgba(255,255,255,.45);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+
+    /* ================================
+       LOGIN BOX
+    ================================ */
+
+    .admin-login {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+
+      padding: 28px;
+      box-sizing: border-box;
+
+      border: 1px solid rgba(90,165,255,.16);
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22,43,68,.78),
+          rgba(7,17,30,.9)
+        );
+
+      box-shadow:
+        0 25px 60px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.025);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      animation: fadeUp .6s ease both;
+    }
+
+
+    .login-icon {
+      width: 58px;
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 20px;
+
+      border: 1px solid rgba(95,170,255,.2);
+      border-radius: 17px;
+
+      background: rgba(65,145,255,.08);
+
+      font-size: 25px;
+    }
+
+
+    .admin-login h2 {
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+
+    .admin-login > p {
+      margin-top: 8px;
+
+      color: rgba(255,255,255,.4);
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+
+    /* ================================
+       FORM
+    ================================ */
+
+    .admin-form {
+      margin-top: 23px;
+    }
+
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+
+    .form-group label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: rgba(255,255,255,.65);
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .4px;
+    }
+
+
+    .form-group input {
+      width: 100%;
+      height: 48px;
+
+      padding: 0 14px;
+      box-sizing: border-box;
+
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 13px;
+
+      outline: none;
+
+      background: rgba(255,255,255,.035);
+
+      color: #fff;
+
+      font-family: inherit;
+      font-size: 13px;
+
+      transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+
+    .form-group input::placeholder {
+      color: rgba(255,255,255,.22);
+    }
+
+
+    .form-group input:focus {
+      border-color: rgba(90,170,255,.55);
+
+      background: rgba(70,145,255,.045);
+
+      box-shadow:
+        0 0 0 3px rgba(70,145,255,.08);
+    }
+
+
+    /* ================================
+       BUTTON
+    ================================ */
+
+    .login-button {
+      width: 100%;
+      height: 48px;
+
+      margin-top: 5px;
+
+      border: 0;
+      border-radius: 13px;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #3188ff,
+          #1765d1
+        );
+
+      color: #fff;
+
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+
+      box-shadow:
+        0 10px 25px rgba(35,115,230,.22);
+
+      transition:
+        transform .2s ease,
+        filter .2s ease;
+    }
+
+
+    .login-button:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+
+    .login-button:active {
+      transform: translateY(1px);
+    }
+
+
+    /* ================================
+       MESSAGE
+    ================================ */
+
+    .login-message {
+      min-height: 18px;
+
+      margin-top: 12px;
+
+      text-align: center;
+
+      color: rgba(255,255,255,.45);
+
+      font-size: 11px;
+    }
+
+
+    .login-message.error {
+      color: #ff7777;
+    }
+
+
+    .login-message.success {
+      color: #72dca0;
+    }
+
+
+    /* ================================
+       ADMIN PANEL
+    ================================ */
+
+    .admin-panel {
+      display: none;
+    }
+
+
+    .admin-panel.show {
+      display: block;
+      animation: fadeUp .45s ease both;
+    }
+
+
+    /* ================================
+       PANEL HEADER
+    ================================ */
+
+    .admin-panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 22px;
+    }
+
+
+    .admin-welcome h2 {
+      font-size: 24px;
+      font-weight: 850;
+    }
+
+
+    .admin-welcome p {
+      margin-top: 5px;
+
+      color: rgba(255,255,255,.38);
+
+      font-size: 11px;
+    }
+
+
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+
+      margin-top: 10px;
+
+      padding: 7px 11px;
+
+      border: 1px solid rgba(255,190,70,.2);
+      border-radius: 9px;
+
+      background: rgba(255,180,50,.06);
+
+      color: #ffc65c;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    .logout-button {
+      flex: 0 0 auto;
+
+      height: 40px;
+
+      padding: 0 15px;
+
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+
+      background: rgba(255,255,255,.035);
+
+      color: rgba(255,255,255,.7);
+
+      font-family: inherit;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: .2s ease;
+    }
+
+
+    .logout-button:hover {
+      background: rgba(255,255,255,.07);
+    }
+
+
+    /* ================================
+       MANAGEMENT GRID
+    ================================ */
+
+    .admin-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 15px;
+    }
+
+
+    .admin-card {
+      min-height: 150px;
+
+      padding: 21px;
+      box-sizing: border-box;
+
+      border:
+        1px solid rgba(90,165,255,.14);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22,43,68,.72),
+          rgba(7,17,30,.86)
+        );
+
+      box-shadow:
+        0 16px 40px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.025);
+
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+
+    .admin-card-icon {
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 17px;
+
+      border:
+        1px solid rgba(95,170,255,.18);
+
+      border-radius: 13px;
+
+      background:
+        rgba(65,145,255,.07);
+
+      font-size: 20px;
+    }
+
+
+    .admin-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+
+    .admin-card p {
+      margin-top: 6px;
+
+      color:
+        rgba(255,255,255,.38);
+
+      font-size: 11px;
+
+      line-height: 1.5;
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================ */
+
+    @media (max-width: 600px) {
+
+      .admin-main {
+        padding-top: 82px;
+        padding-bottom: 60px;
+      }
+
+      .admin-container {
+        padding: 30px 5%;
+      }
+
+      .admin-header h1 {
+        font-size: 39px;
+      }
+
+      .admin-header p {
+        font-size: 12px;
+      }
+
+      .admin-login {
+        padding: 21px;
+        border-radius: 18px;
+      }
+
+      .admin-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .admin-card {
+        min-height: 135px;
+        border-radius: 17px;
+      }
+
+      .admin-panel-top {
+        align-items: flex-start;
+      }
+
+      .admin-welcome h2 {
+        font-size: 20px;
+      }
+
+      .logout-button {
+        height: 36px;
+        padding: 0 12px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- ================================
+       NAVBAR
+  ================================ -->
+
+  <header class="navbar">
+
+    <a href="index.html" class="brand">
+
+      <span class="brand-main">
+        7A
+      </span>
+
+      <span class="brand-sub">
+        SPENSAMO
+      </span>
+
+    </a>
+
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="Buka menu"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+  </header>
+
+
+  <div
+    class="menu-overlay"
+    id="menuOverlay"
+  ></div>
+
+
+  <!-- ================================
+       SIDE MENU
+  ================================ -->
+
+  <aside
+    class="side-menu"
+    id="sideMenu"
+  >
+
+    <div class="side-menu-header">
+
+      <div>
+
+        <span class="menu-title">
+          7A
+        </span>
+
+        <span class="menu-subtitle">
+          SPENSAMO
+        </span>
+
+      </div>
+
+
+      <button
+        class="close-menu"
+        id="closeMenu"
+        type="button"
+        aria-label="Tutup menu"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <nav class="menu-nav">
+
+      <a
+        href="index.html"
+        class="menu-link"
+      >
+        Beranda
+      </a>
+
+      <a
+        href="anggota.html"
+        class="menu-link"
+      >
+        Anggota
+      </a>
+
+      <a
+        href="jadwal.html"
+        class="menu-link"
+      >
+        Jadwal
+      </a>
+
+      <a
+        href="prestasi.html"
+        class="menu-link"
+      >
+        Prestasi
+      </a>
+
+      <a
+        href="pengumuman.html"
+        class="menu-link"
+      >
+        Pengumuman
+      </a>
+
+    </nav>
+
+
+    <div class="menu-bottom">
+
+      <a
+        href="admin.html"
+        class="admin-link"
+      >
+        Admin
+      </a>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ================================
+       MAIN
+  ================================ -->
+
+  <main class="admin-main">
+
+    <div class="admin-container">
+
+
+      <!-- ADMIN HEADER -->
+
+      <section class="admin-header">
+
+        <span class="section-label">
+          CLASS MANAGEMENT
+        </span>
+
+        <h1>
+          Admin <span>7A</span>
+        </h1>
+
+        <p>
+          Kelola website Kelas 7A SPENSAMO.
+        </p>
+
+      </section>
+
+
+      <!-- LOGIN -->
+
+      <section
+        class="admin-login"
+        id="adminLogin"
+      >
+
+        <div class="login-icon">
+          🔐
+        </div>
+
+        <h2>
+          Login Admin
+        </h2>
+
+        <p>
+          Masukkan kode untuk membuka
+          panel pengelolaan Kelas 7A.
+        </p>
+
+
+        <form
+          class="admin-form"
+          id="adminForm"
+        >
+
+          <div class="form-group">
+
+            <label for="adminCode">
+              KODE ADMIN
+            </label>
+
+            <input
+              id="adminCode"
+              type="password"
+              placeholder="Masukkan kode admin"
+              autocomplete="off"
+              required
+            >
+
+          </div>
+
+
+          <button
+            class="login-button"
+            type="submit"
+          >
+            Masuk ke Panel Admin
+          </button>
+
+        </form>
+
+
+        <div
+          class="login-message"
+          id="loginMessage"
+        ></div>
+
+      </section>
+
+
+      <!-- ================================
+           ADMIN PANEL
+      ================================ -->
+
+      <section
+        class="admin-panel"
+        id="adminPanel"
+      >
+
+        <div class="admin-panel-top">
+
+          <div class="admin-welcome">
+
+            <h2>
+              Dashboard
+            </h2>
+
+            <p id="adminWelcomeText">
+              Selamat datang di panel admin 7A.
+            </p>
+
+            <div
+              class="role-badge"
+              id="roleBadge"
+            >
+              Admin 7A
+            </div>
+
+          </div>
+
+
+          <button
+            class="logout-button"
+            id="logoutButton"
+            type="button"
+          >
+            Keluar
+          </button>
+
+        </div>
+
+
+        <!-- MANAGEMENT CARDS -->
+
+        <div class="admin-grid">
+
+          <article class="admin-card">
+
+            <div class="admin-card-icon">
+              👥
+            </div>
+
+            <h3>
+              Kelola Anggota
+            </h3>
+
+            <p>
+              Kelola nama dan data anggota
+              kelas 7A.
+            </p>
+
+          </article>
+
+
+          <article class="admin-card">
+
+            <div class="admin-card-icon">
+              🗓️
+            </div>
+
+            <h3>
+              Kelola Jadwal
+            </h3>
+
+            <p>
+              Kelola jadwal pelajaran
+              kelas 7A.
+            </p>
+
+          </article>
+
+
+          <article class="admin-card">
+
+            <div class="admin-card-icon">
+              🏆
+            </div>
+
+            <h3>
+              Kelola Prestasi
+            </h3>
+
+            <p>
+              Tambahkan dan kelola
+              prestasi kelas.
+            </p>
+
+          </article>
+
+
+          <article class="admin-card">
+
+            <div class="admin-card-icon">
+              📢
+            </div>
+
+            <h3>
+              Kelola Pengumuman
+            </h3>
+
+            <p>
+              Buat dan kelola pengumuman
+              terbaru kelas.
+            </p>
+
+          </article>
+
+        </div>
+
+
+                
+        <!-- ========================================
+             ADMIN MANAGEMENT
+        ======================================== -->
+
+        <section
+          class="admin-management"
+          id="adminManagement"
+          style="margin-top:25px;"
+        >
+
+          <div
+            class="admin-card"
+            style="min-height:auto;"
+          >
+
+            <h3>
+              Manajemen Admin
+            </h3>
+
+            <p>
+              Developer dapat mengatur akses
+              admin website.
+            </p>
+
+
+            <!-- DAFTAR ADMIN -->
+
+            <div
+              id="adminList"
+              style="margin-top:20px;"
+            ></div>
+
+
+            <!-- TAMBAH ADMIN -->
+
+            <button
+              type="button"
+              id="addAdminButton"
+              class="login-button"
+              style="margin-top:15px;"
+            >
+              Tambah Admin
+            </button>
+
+
+            <!-- UNDANG ADMIN -->
+
+            <div
+              class="invite-box"
+              style="
+                margin-top:20px;
+                padding:16px;
+                border:1px solid rgba(90,165,255,.12);
+                border-radius:15px;
+                background:rgba(255,255,255,.025);
+              "
+            >
+
+              <h3>
+                Undang Admin
+              </h3>
+
+              <p>
+                Buat tautan undangan untuk
+                admin baru.
+              </p>
+
+
+              <button
+                type="button"
+                id="inviteAdminButton"
+                class="login-button"
+                style="margin-top:14px;"
+              >
+                Buat Link Undangan
+              </button>
+
+
+              <div
+                id="inviteResult"
+                style="
+                  margin-top:12px;
+                  word-break:break-word;
+                  font-size:11px;
+                  color:rgba(255,255,255,.45);
+                "
+              ></div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ========================================
+             PERMISSION INFORMATION
+        ======================================== -->
+
+        <section
+          class="admin-management"
+          style="margin-top:15px;"
+        >
+
+          <div
+            class="admin-card"
+            style="min-height:auto;"
+          >
+
+            <h3>
+              Hak Akses
+            </h3>
+
+            <p>
+              Developer / Owner dapat mengatur
+              admin dan aksesnya.
+            </p>
+
+            <p>
+              Admin dapat mengelola anggota,
+              jadwal, prestasi, dan pengumuman.
+            </p>
+
+            <p>
+              Developer tidak dapat dihapus
+              atau diblokir oleh Admin.
+            </p>
+
+          </div>
+
+        </section>
+
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- ========================================
+       JAVASCRIPT
+       
+       JANGAN TUTUP SCRIPT/BODY/HTML DULU.
+       SCRIPT AKAN DIMULAI DI PART 4.
+  ======================================== -->
+
+  <script>
+
+    "use strict";
+
+
+    /* ========================================
+       KONFIGURASI
+    ======================================== */
+
+    const DEVELOPER_CODE =
+      "adminpilihan7@";
+
+
+    const ADMIN_STORAGE_KEY =
+      "sevenAAdmins";
+
+
+    const SESSION_NAME =
+      "sevenAAdmin";
+
+
+    const SESSION_ROLE =
+      "sevenARole";
+
+
+    /* ========================================
+       DATA ADMIN
+    ======================================== */
+
+    let admins = JSON.parse(
+      localStorage.getItem(
+        ADMIN_STORAGE_KEY
+      )
+    ) || [
+
+      {
+        id: "developer",
+        name: "Developer",
+        role: "developer",
+        status: "active"
+      },
+
+      {
+        id: "admin-01",
+        name: "Admin 7A",
+        role: "admin",
+        status: "active",
+        code: "admin7a"
+      }
+
+    ];
+
+
+    /* ========================================
+       SIMPAN DATA
+    ======================================== */
+
+    function saveAdmins() {
+
+      localStorage.setItem(
+        ADMIN_STORAGE_KEY,
+        JSON.stringify(admins)
+      );
+
+    }
+
+
+    /* ========================================
+       ELEMENT
+    ======================================== */
+
+    const adminLogin =
+      document.getElementById(
+        "adminLogin"
+      );
+
+
+    const adminPanel =
+      document.getElementById(
+        "adminPanel"
+      );
+
+
+    const adminForm =
+      document.getElementById(
+        "adminForm"
+      );
+
+
+    const adminCode =
+      document.getElementById(
+        "adminCode"
+      );
+
+
+    const loginMessage =
+      document.getElementById(
+        "loginMessage"
+      );
+
+
+    const logoutButton =
+      document.getElementById(
+        "logoutButton"
+      );
+
+
+    const roleBadge =
+      document.getElementById(
+        "roleBadge"
+      );
+
+
+    const adminWelcomeText =
+      document.getElementById(
+        "adminWelcomeText"
+      );
+
+
+    const adminManagement =
+      document.getElementById(
+        "adminManagement"
+      );
+
+
+    const adminList =
+      document.getElementById(
+        "adminList"
+      );
+
+
+    const addAdminButton =
+      document.getElementById(
+        "addAdminButton"
+      );
+
+
+    const inviteAdminButton =
+      document.getElementById(
+        "inviteAdminButton"
+      );
+
+
+    const inviteResult =
+      document.getElementById(
+        "inviteResult"
+      );
+
+
+    /* ========================================
+       PESAN LOGIN
+    ======================================== */
+
+    function showLoginMessage(
+      message,
+      type = ""
+    ) {
+
+      if (!loginMessage) return;
+
+      loginMessage.textContent =
+        message;
+
+      loginMessage.className =
+        "login-message " + type;
+
+    }
+
+
+    /* ========================================
+       SESSION
+    ======================================== */
+
+    function getCurrentSession() {
+
+      const id =
+        sessionStorage.getItem(
+          SESSION_NAME
+        );
+
+
+      const role =
+        sessionStorage.getItem(
+          SESSION_ROLE
+        );
+
+
+      if (!id || !role) {
+        return null;
+      }
+
+
+      return {
+        id: id,
+        role: role
+      };
+
+    }
+
+
+    /* ========================================
+       TAMPILKAN DASHBOARD
+    ======================================== */
+
+    function showDashboard(
+      name,
+      role
+    ) {
+
+      if (adminLogin) {
+
+        adminLogin.style.display =
+          "none";
+
+      }
+
+
+      if (adminPanel) {
+
+        adminPanel.classList.add(
+          "show"
+        );
+
+      }
+
+
+      if (adminWelcomeText) {
+
+        adminWelcomeText.textContent =
+          "Login sebagai " + name + ".";
+
+      }
+
+
+      if (roleBadge) {
+
+        roleBadge.textContent =
+          role === "developer"
+            ? "Developer / Owner"
+            : "Admin 7A";
+
+      }
+
+
+      if (adminManagement) {
+
+        adminManagement.style.display =
+          role === "developer"
+            ? "block"
+            : "none";
+
+      }
+
+
+      if (
+        role === "developer"
+      ) {
+
+        renderAdminList();
+
+      }
+
+    }
+
+
+    /* ========================================
+       LOGIN
+    ======================================== */
+
+    if (adminForm) {
+
+      adminForm.addEventListener(
+        "submit",
+        function(event) {
+
+          event.preventDefault();
+
+
+          const code =
+            adminCode.value.trim();
+
+
+          /* DEVELOPER */
+
+          if (
+            code ===
+            DEVELOPER_CODE
+          ) {
+
+            sessionStorage.setItem(
+              SESSION_NAME,
+              "developer"
+            );
+
+
+            sessionStorage.setItem(
+              SESSION_ROLE,
+              "developer"
+            );
+
+
+            showDashboard(
+              "Developer",
+              "developer"
+            );
+
+
+            adminCode.value = "";
+
+            return;
+
+          }
+
+
+          /* ADMIN */
+
+          const admin =
+            admins.find(
+              item =>
+                item.role === "admin" &&
+                item.status === "active" &&
+                item.code === code
+            );
+
+
+          if (!admin) {
+
+            showLoginMessage(
+              "Kode admin salah atau akses diblokir.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          sessionStorage.setItem(
+            SESSION_NAME,
+            admin.id
+          );
+
+
+          sessionStorage.setItem(
+            SESSION_ROLE,
+            "admin"
+          );
+
+
+          showDashboard(
+            admin.name,
+            "admin"
+          );
+
+
+          adminCode.value = "";
+
+        }
+      );
+
+    }
+
+
+    /* ========================================
+       LOGOUT
+    ======================================== */
+
+    if (logoutButton) {
+
+      logoutButton.addEventListener(
+        "click",
+        function() {
+
+          sessionStorage.removeItem(
+            SESSION_NAME
+          );
+
+
+          sessionStorage.removeItem(
+            SESSION_ROLE
+          );
+
+
+          window.location.reload();
+
+        }
+      );
+
+    }
+
+
+        /* ========================================
+       CEK HAK DEVELOPER
+    ======================================== */
+
+    function isDeveloper() {
+
+      const session =
+        getCurrentSession();
+
+      return (
+        session &&
+        session.role === "developer"
+      );
+
+    }
+
+
+    /* ========================================
+       RENDER DAFTAR ADMIN
+    ======================================== */
+
+    function renderAdminList() {
+
+      if (!adminList) return;
+
+      adminList.innerHTML = "";
+
+
+      admins.forEach(
+        function(admin) {
+
+          const item =
+            document.createElement("div");
+
+
+          item.style.cssText = `
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            padding:14px 0;
+            border-bottom:1px solid rgba(255,255,255,.07);
+          `;
+
+
+          const info =
+            document.createElement("div");
+
+
+          const name =
+            document.createElement("strong");
+
+
+          name.textContent =
+            admin.name;
+
+
+          name.style.fontSize =
+            "13px";
+
+
+          const status =
+            document.createElement("div");
+
+
+          if (
+            admin.role === "developer"
+          ) {
+
+            status.textContent =
+              "Developer / Owner";
+
+          } else if (
+            admin.status === "banned"
+          ) {
+
+            status.textContent =
+              "Akses diblokir";
+
+          } else {
+
+            status.textContent =
+              "Admin aktif";
+
+          }
+
+
+          status.style.cssText = `
+            margin-top:4px;
+            color:rgba(255,255,255,.38);
+            font-size:10px;
+          `;
+
+
+          info.appendChild(name);
+          info.appendChild(status);
+
+
+          const controls =
+            document.createElement("div");
+
+
+          controls.style.cssText = `
+            display:flex;
+            gap:7px;
+            flex-wrap:wrap;
+            justify-content:flex-end;
+          `;
+
+
+          /*
+             DEVELOPER TIDAK BISA
+             DIBAN ATAU DIHAPUS
+          */
+
+          if (
+            admin.role !== "developer"
+          ) {
+
+
+            /* ==========================
+               BAN / UNBAN
+            ========================== */
+
+            const banButton =
+              document.createElement("button");
+
+
+            banButton.type =
+              "button";
+
+
+            banButton.textContent =
+              admin.status === "banned"
+                ? "Unban"
+                : "Ban";
+
+
+            banButton.style.cssText = `
+              padding:7px 10px;
+              border:1px solid rgba(255,255,255,.1);
+              border-radius:8px;
+              background:rgba(255,255,255,.04);
+              color:#fff;
+              font-family:inherit;
+              font-size:10px;
+              cursor:pointer;
+            `;
+
+
+            banButton.addEventListener(
+              "click",
+              function() {
+
+                if (!isDeveloper()) {
+                  return;
+                }
+
+
+                if (
+                  admin.status ===
+                  "banned"
+                ) {
+
+                  admin.status =
+                    "active";
+
+                } else {
+
+                  admin.status =
+                    "banned";
+
+                }
+
+
+                saveAdmins();
+
+                renderAdminList();
+
+              }
+            );
+
+
+            controls.appendChild(
+              banButton
+            );
+
+
+            /* ==========================
+               HAPUS ADMIN
+            ========================== */
+
+            const deleteButton =
+              document.createElement("button");
+
+
+            deleteButton.type =
+              "button";
+
+
+            deleteButton.textContent =
+              "Hapus";
+
+
+            deleteButton.style.cssText = `
+              padding:7px 10px;
+              border:1px solid rgba(255,100,100,.18);
+              border-radius:8px;
+              background:rgba(255,80,80,.05);
+              color:#ff8b8b;
+              font-family:inherit;
+              font-size:10px;
+              cursor:pointer;
+            `;
+
+
+            deleteButton.addEventListener(
+              "click",
+              function() {
+
+                if (!isDeveloper()) {
+                  return;
+                }
+
+
+                const confirmDelete =
+                  confirm(
+                    "Hapus admin " +
+                    admin.name +
+                    "?"
+                  );
+
+
+                if (!confirmDelete) {
+                  return;
+                }
+
+
+                admins =
+                  admins.filter(
+                    item =>
+                      item.id !==
+                      admin.id
+                  );
+
+
+                saveAdmins();
+
+                renderAdminList();
+
+              }
+            );
+
+
+            controls.appendChild(
+              deleteButton
+            );
+
+          }
+
+
+          item.appendChild(info);
+          item.appendChild(controls);
+
+          adminList.appendChild(item);
+
+        }
+      );
+
+    }
+
+
+    /* ========================================
+       TAMBAH ADMIN
+    ======================================== */
+
+    if (addAdminButton) {
+
+      addAdminButton.addEventListener(
+        "click",
+        function() {
+
+          if (!isDeveloper()) {
+
+            alert(
+              "Hanya Developer yang dapat menambah admin."
+            );
+
+            return;
+
+          }
+
+
+          const name =
+            prompt(
+              "Masukkan nama admin:"
+            );
+
+
+          if (!name || !name.trim()) {
+            return;
+          }
+
+
+          const code =
+            prompt(
+              "Buat kode login admin:"
+            );
+
+
+          if (!code || !code.trim()) {
+            return;
+          }
+
+
+          const cleanName =
+            name.trim();
+
+
+          const cleanCode =
+            code.trim();
+
+
+          const codeExists =
+            admins.some(
+              admin =>
+                admin.code ===
+                cleanCode
+            );
+
+
+          if (codeExists) {
+
+            alert(
+              "Kode tersebut sudah digunakan."
+            );
+
+            return;
+
+          }
+
+
+          const newAdmin = {
+
+            id:
+              "admin-" +
+              Date.now(),
+
+            name:
+              cleanName,
+
+            role:
+              "admin",
+
+            status:
+              "active",
+
+            code:
+              cleanCode
+
+          };
+
+
+          admins.push(
+            newAdmin
+          );
+
+
+          saveAdmins();
+
+          renderAdminList();
+
+
+          alert(
+            "Admin berhasil ditambahkan."
+          );
+
+        }
+      );
+
+    }
+
+
+    /* ========================================
+       BUAT LINK UNDANGAN
+    ======================================== */
+
+    if (inviteAdminButton) {
+
+      inviteAdminButton.addEventListener(
+        "click",
+        function() {
+
+          if (!isDeveloper()) {
+
+            alert(
+              "Hanya Developer yang dapat membuat undangan."
+            );
+
+            return;
+
+          }
+
+
+          const token =
+            "7A-" +
+            Date.now().toString(36);
+
+
+          const inviteLink =
+            window.location.origin +
+            window.location.pathname +
+            "?invite=" +
+            encodeURIComponent(
+              token
+            );
+
+
+          if (inviteResult) {
+
+            inviteResult.innerHTML = `
+              <div>
+                Link undangan:
+              </div>
+
+              <div
+                style="
+                  margin-top:8px;
+                  padding:10px;
+                  border-radius:9px;
+                  background:rgba(0,0,0,.2);
+                  color:#63aaff;
+                "
+              >
+                ${inviteLink}
+              </div>
+
+              <button
+                type="button"
+                id="whatsappInvite"
+                style="
+                  margin-top:10px;
+                  padding:9px 12px;
+                  border:0;
+                  border-radius:9px;
+                  background:#1d8b58;
+                  color:#fff;
+                  font-family:inherit;
+                  font-size:10px;
+                  font-weight:700;
+                  cursor:pointer;
+                "
+              >
+                Bagikan WhatsApp
+              </button>
+            `;
+
+
+            const whatsappButton =
+              document.getElementById(
+                "whatsappInvite"
+              );
+
+
+            if (whatsappButton) {
+
+              whatsappButton.addEventListener(
+                "click",
+                function() {
+
+                  const message =
+                    "Undangan Admin 7A SPENSAMO%0A%0A" +
+                    encodeURIComponent(
+                      inviteLink
+                    );
+
+
+                  window.open(
+                    "https://wa.me/?text=" +
+                    message,
+                    "_blank"
+                  );
+
+                }
+              );
+
+            }
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* ========================================
+       AUTO LOGIN
+    ======================================== */
+
+    const currentSession =
+      getCurrentSession();
+
+
+    if (currentSession) {
+
+      if (
+        currentSession.role ===
+        "developer"
+      ) {
+
+        showDashboard(
+          "Developer",
+          "developer"
+        );
+
+      } else {
+
+
+        const savedAdmin =
+          admins.find(
+            admin =>
+              admin.id ===
+              currentSession.id
+          );
+
+
+        if (
+          savedAdmin &&
+          savedAdmin.role === "admin" &&
+          savedAdmin.status === "active"
+        ) {
+
+          showDashboard(
+            savedAdmin.name,
+            "admin"
+          );
+
+        } else {
+
+          sessionStorage.removeItem(
+            SESSION_NAME
+          );
+
+          sessionStorage.removeItem(
+            SESSION_ROLE
+          );
+
+        }
+
+      }
+
+    }
+
+
+    /* ========================================
+       INVITATION NOTICE
+    ======================================== */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const inviteToken =
+      params.get("invite");
+
+
+    if (
+      inviteToken &&
+      adminLogin
+    ) {
+
+      const notice =
+        document.createElement("div");
+
+
+      notice.style.cssText = `
+        margin-bottom:18px;
+        padding:13px 14px;
+        border:1px solid rgba(90,165,255,.16);
+        border-radius:12px;
+        background:rgba(70,145,255,.06);
+        color:rgba(255,255,255,.65);
+        font-size:11px;
+        line-height:1.5;
+      `;
+
+
+      notice.textContent =
+        "Tautan undangan Admin 7A terdeteksi. Kode akses diberikan oleh Developer.";
+
+
+      adminLogin.insertBefore(
+        notice,
+        adminLogin.firstChild
+      );
+
+                  }
+
+
+        /* ========================================
+       PROTEKSI DEVELOPER
+    ======================================== */
+
+    function protectDeveloper() {
+
+      const developerExists =
+        admins.some(
+          admin =>
+            admin.id === "developer"
+        );
+
+
+      if (!developerExists) {
+
+        admins.unshift({
+
+          id: "developer",
+
+          name: "Developer",
+
+          role: "developer",
+
+          status: "active"
+
+        });
+
+      }
+
+
+      admins =
+        admins.map(
+          admin => {
+
+            if (
+              admin.id === "developer"
+            ) {
+
+              return {
+
+                id: "developer",
+
+                name: "Developer",
+
+                role: "developer",
+
+                status: "active"
+
+              };
+
+            }
+
+
+            return admin;
+
+          }
+        );
+
+
+      saveAdmins();
+
+    }
+
+
+    /* ========================================
+       JALANKAN PROTEKSI
+    ======================================== */
+
+    protectDeveloper();
+
+
+    /* ========================================
+       BERSIHKAN URL UNDANGAN
+    ======================================== */
+
+    if (inviteToken) {
+
+      try {
+
+        const cleanUrl =
+          window.location.origin +
+          window.location.pathname;
+
+
+        window.history.replaceState(
+          {},
+          document.title,
+          cleanUrl
+        );
+
+      } catch (error) {
+
+        console.log(
+          "URL undangan tidak dapat dibersihkan."
+        );
+
+      }
+
+    }
+
+
+    /* ========================================
+       ANIMASI ADMIN CARD
+    ======================================== */
+
+    const adminCards =
+      document.querySelectorAll(
+        ".admin-card"
+      );
+
+
+    adminCards.forEach(
+      function(card, index) {
+
+        card.style.animation =
+          "fadeUp .45s ease both";
+
+
+        card.style.animationDelay =
+          (index * 0.07) + "s";
+
+      }
+    );
+
+
+    /* ========================================
+       DEBUG
+    ======================================== */
+
+    console.log(
+      "7A SPENSAMO Admin Panel aktif."
+    );
+
+
+  </script>
+
+</body>
+
+</html>
